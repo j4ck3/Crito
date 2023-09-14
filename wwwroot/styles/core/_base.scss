@@ -1,0 +1,53 @@
+html, body {
+    font-size: 16px;
+    font-family: $font-DM;
+    font-weight: $font-weight-regular;
+    overflow-x: hidden;
+    color: $color-text;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: $color-text;
+}
+
+.bg-theme { background-color: $color-gray-0;}
+.bg-theme-dark { background-color: $color-theme-dark;}
+.font-dans { font-family: $font-DM;}
+.font-inter { font-family: $font-Inter;}
+.weight-bold {font-weight: $font-weight-bold;}
+.weight-regular { font-weight: $font-weight-regular;}
+.weight-light { font-weight: $font-weight-light;}
+.size-xl {font-size: 45px;}
+
+.btn-theme {
+    color: $color-text;
+    background-color: $color-theme;
+    text-decoration: none;
+
+    font-size: 16px;
+    font-family: $font-Inter;
+    font-weight: $font-weight-semi-bold;
+    padding: 1rem;
+    border-radius: 50px;
+    border: 0;
+}
+
+.input-base {
+    padding: 1rem;
+    border-radius: 50px;
+    border: none
+}
+
+.contact-icon-bg {
+    background-color: $color-theme-dark;
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}

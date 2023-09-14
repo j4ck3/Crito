@@ -1,0 +1,103 @@
+@import '../styles/core/variables.scss';
+@import '../styles/core/base.scss';
+@import '../styles/core/mixins.scss';
+
+
+.link-nav-active {
+    position: relative;
+    display: inline-block;
+    font-weight: $font-weight-bold!important; /* Set your desired font-weight */
+    text-decoration: none;
+}
+
+.link-nav-active::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    bottom: 0;
+    border-bottom: 2px solid $color-text;
+    border-radius: 2px;
+}
+
+.body-nav {
+    .header-img {
+        margin-right: 2rem;
+        height: 50px;
+    }
+
+    .contact-nav {
+        color: $color-text;
+        font-size: 15px;
+        font-family: $font-Inter;
+        font-weight: $font-weight-light;
+        text-decoration: none;
+        margin-left: 1rem;
+        padding-right: 1rem;
+        border-right: 1px solid $color-text;
+        padding-top: .3rem;
+        padding-bottom: .3rem;
+
+        &:nth-child(3) {
+            border: none;
+        }
+    }
+
+    .socials-nav {
+        color: $color-text;
+        font-size: 15px;
+        margin-right: .4rem;
+    }
+
+    .link-nav {
+        color: $color-text;
+        font-size: 15px;
+        font-family: $font-Inter;
+        font-weight: $font-weight-light;
+        text-decoration: none;
+        margin-left: 1rem;
+    }
+}
+
+.body-footer {
+    .header-link-footer {
+        display: block;
+        font-family: $font-DM;
+        font-weight: $font-weight-bold;
+        font-size: 22px;
+        color: white;
+        margin-bottom: 2rem;
+        text-decoration: none;
+    }
+
+    .link-footer {
+        display: block;
+        font-size: 16px;
+        font-family: $font-Inter;
+        font-weight: $font-weight-regular;
+        color: rgba(255, 255, 255, .5);
+        margin-bottom: .6rem;
+        text-decoration: none;
+    }
+    .container-footer {
+        width: 300px;
+    }
+
+    .socials-footer {
+        color: white;
+        font-size: 15px;
+        margin-right: .7rem;
+    }
+
+    .company-footer {
+        border-top: 1px solid rgba(255, 255, 255, .5);
+    }
+
+    .img-footer {
+        position: absolute;
+        bottom: -81px;
+        right: -106px;
+        transform: rotate(4deg);
+    }
+}

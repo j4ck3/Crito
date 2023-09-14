@@ -1,0 +1,12 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.HomePage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "_Layout.cshtml";
+	ViewData["Title"] = @Model.Value("pageTitle");
+	ViewData["Description"] = @Model.Value("pageDescription");
+	ViewData["Keys"] = @Model.Value("pageKeys");
+}
+
+@await Html.PartialAsync("_Nav")
+@await Html.PartialAsync("_Footer")
