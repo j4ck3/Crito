@@ -1,4 +1,5 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.HomePage>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
@@ -9,4 +10,78 @@
 }
 
 @await Html.PartialAsync("_Nav")
+@await Html.PartialAsync("_Landing")
+@await Html.PartialAsync("_Partners")
+
+
+<div class="container-xl border border-2 my-5">
+    <div class="p-5">
+        <div class="row">
+            <div class="col-4">
+                    <p class="section-title">@Model.Value("featuresSectionTitle")</p>
+                    <h3 class="my-4 fs-1 weight-bold">@Model.Value("featuresTitle")</h3>
+                    <button class="btn-theme w-100 d-block" href="@Model.Value("featuresButtonUrl")">@Model.Value("featuresButtonTitle")</button>
+            </div>
+            <div class="col-8">
+                <div class="feature-item-grid">
+                    @Html.GetBlockListHtml(Model.FeaturesItems)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@await Html.PartialAsync("_AboutCompany")
+
+
+<div class="container-fluid bg-theme-grey">
+    <div class="container py-5">
+        <p class="section-title">@Model.Value("servicesSectionTitle")</p>
+        <h class="fs-1 weight-bold">@Model.Value("servicesTitle")</h3>
+        <div class="service-item">
+            @Html.GetBlockListHtml(Model.Services)
+        </div>
+        <button class="d-block mt-4 mx-auto btn-theme-sec" href="@Model.Value("serviceButtonUrl")">@Model.Value("serviceButtonTitle")<i class="fa-solid fa-up-right-from-square ms-3"></i></button>
+    </div>
+</div>
+
+<div class="container-fluid position-relative">
+    <div class="container my-5">
+        <div class="d-flex justify-between">
+            <div class="flex-shrink-1">
+                <p class="section-title">@Model.Value("whyUsSectionTitle")</p>
+                <h3 class="my-4 fs-1 weight-bold">@Model.Value("whyUsTitle")</h3>
+                <div class="why-us-items">
+                    @Html.GetBlockListHtml(Model.WhyUs)
+                </div>
+            </div>
+            <div>
+                @{
+                    var whyUsImage = Model.Value<MediaWithCrops>("whyUsImage")!;
+                    if (whyUsImage != null)
+                    {
+                        <img class="position-relative z-3" src="@whyUsImage.MediaUrl()" alt="people collaborating" />
+                    }
+                }
+                <div class="bg-theme-grey why-us-bg"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid bg-theme-yellow p-4">
+    <div class="container p-5 bg-white">
+        <p class="section-title text-center">@Model.Value("reviewsSectionTitle")</p>
+        <h3 class="my-4 fs-1 weight-bold text-center">@Model.Value("reviewsTitle")</h3>
+        <div class="review-item-container">
+            @Html.GetBlockListHtml(Model.ReviewsItems)
+        </div>
+    </div>
+    <button class="d-block mx-auto btn-theme-black my-5" href="@Model.Value("reviewsButtonUrl")">@Model.Value("reviewsButtonTitle")</button>
+</div>
+
+
+
 @await Html.PartialAsync("_Footer")
+    

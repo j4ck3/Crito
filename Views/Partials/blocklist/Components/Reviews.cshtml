@@ -1,0 +1,33 @@
+﻿@using Umbraco.Cms.Core.Models;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    var content = (ContentModels.Reviews)Model.Content;
+    
+}
+
+
+<div>
+    <div class="my-3">
+        @for (int i = 0; i < Convert.ToInt32(content.Value("reviewsItemRating")); i++)
+        {
+            <i class="fas fa-star reviewstar"></i>
+        }
+    </div>
+    <h4 class="fs-5 font-inter">@content.Value("reviewsItemDescription")</h4>
+    <div class="row my-3">
+        <div class="col-md-2">
+            @{
+                var reviewsItemPersonImage = content.Value<MediaWithCrops>("reviewsItemPersonImage")!;
+                if (reviewsItemPersonImage != null)
+                {
+                    <img class="review-item-person-img" src="@reviewsItemPersonImage.MediaUrl()" alt="@content.Value("reviewsItemPersonImage")" />
+                }
+            }
+        </div>
+        <div class="col-md-9 ms-3">
+            <p class="fs-4 m-0 weight-bold">@content.Value("reviewsItemPersonName")</p>
+            <p class="fs-4 text-danger">@content.Value("reviewsItemPersonRole")</p>
+        </div>
+    </div>
+</div>

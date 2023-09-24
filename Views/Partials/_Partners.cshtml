@@ -1,0 +1,14 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.Models
+
+<div class="container my-5">
+    <section class="d-flex justify-content-around">
+        @{
+            var partners = Model.Value<IEnumerable<MediaWithCrops>>("images");
+            foreach (var entry in partners)
+            {
+                <img class="max-w-md" src="@entry.MediaUrl()"/>
+            }
+        }
+    </section>
+</div>

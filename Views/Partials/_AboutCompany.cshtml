@@ -1,0 +1,30 @@
+﻿@using Umbraco.Cms.Core.Models;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+
+<div class="container">
+    <div class="d-flex justify-content-between g-3 my-5">
+        <div class="position-relative">
+            @{
+                var aboutCompanyPersonImage = Model.Value<MediaWithCrops>("aboutCompanyPersonImage")!;
+                if (aboutCompanyPersonImage != null)
+                {
+                    <img src="@aboutCompanyPersonImage.MediaUrl()" alt="@Model.Value("aboutCompanyPersonName")" />
+                }
+            }
+            <div class="about-company-image-desc">
+                <p class="weight-bold fs-2">@Model.Value("aboutCompanyPersonName"),<span class="ms-2 text-danger weight-bold fs-4">@Model.Value("aboutCompanyPersonRole")</span></p>
+                <p clas="font-inter">@Model.Value("aboutCompanyPersonDescription")</p>
+            </div>
+        </div>
+        <div class="ms-5">
+            <p class="section-title">@Model.Value("aboutCompanySectionTitle")</p>
+            <h3 class="size-xl weight-bold">@Model.Value("aboutCompanyTitle")</h3>
+            <p class="my-5">@Model.Value("aboutCompanyDescription1")</p>
+            <p class="my-5">@Model.Value("aboutCompanyDescription2")</p>
+            
+            <button class="btn-theme-black mt-5 me-3" href="@Model.Value("aboutCompanyButtonUrl")">@Model.Value("aboutCompanyButtonTitle")</button>
+            <button href="@Model.Value("aboutCompanyButtonUrl2")" class="bg-transparent border border-0"><span class="btn-theme-sec px-4 me-4"><i class="fa-solid fa-play"></i></span>@Model.Value("aboutCompanyButtonTitle2")</button>
+        </div>
+    </div>    
+</div>

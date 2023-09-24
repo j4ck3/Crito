@@ -6,7 +6,7 @@
 .link-nav-active {
     position: relative;
     display: inline-block;
-    font-weight: $font-weight-bold!important; /* Set your desired font-weight */
+    font-weight: $font-weight-bold!important;
     text-decoration: none;
 }
 
@@ -61,6 +61,7 @@
 }
 
 .body-footer {
+    overflow:hidden!important;
     .header-link-footer {
         display: block;
         font-family: $font-DM;
@@ -100,4 +101,60 @@
         right: -106px;
         transform: rotate(4deg);
     }
+}
+
+.feature-item-grid {
+
+    .umb-block-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+} 
+
+
+.service-item {
+
+    .umb-block-list {
+        display: flex;
+        gap: 2rem;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.review-item-container {
+
+
+    .umb-block-list {
+        display: flex;
+        gap: 4rem;
+        flex-direction: row!important;
+        justify-content: space-between;
+    }
+}
+
+.about-company-image-desc {
+    background-color: #BEEBFF;
+    padding: 2rem;
+    position: absolute;
+    bottom: 50px;
+    left: -50px;
+}
+
+.why-us-bg {
+    height: 425px;
+    width: 1060px;
+    position: absolute;
+    right: 0;
+    bottom: -77px;
+}
+
+.review-item-person-img {
+    width: 70px;
+    height: auto;
+    border-radius: 50%;
+}
+.reviewstar {
+    color: #F94D1C;
 }

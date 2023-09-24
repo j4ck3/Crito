@@ -1,0 +1,23 @@
+﻿@using Umbraco.Cms.Core.Models;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+<div class="bg-theme">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h1 class="fs-1 weight-bold landing-title">@Model.Value("landingTitle")</h1>
+                <p class="mb-5">@Model.Value("landingSlogan")</p>
+                <button class="btn-theme block" href="@Model.Value("landingButtonUrl")">@Model.Value("landingButtonTitle")<i class="fa-solid fa-square-arrow-up-right ms-2"></i></button>
+                <button class="btn-theme-sec inline-block" href="@Model.Value("landingButtonUrl2")">@Model.Value("landingButtonTitle2")<i class="fa-solid fa-square-arrow-up-right ms-2"></i></button>
+            </div>
+
+            @{
+                var landingImage = Model.Value<MediaWithCrops>("landingImage")!;
+                if (landingImage != null)
+                {
+                    <img src="@landingImage.MediaUrl()" alt="@Model.Value("landingTitle")" />
+                }
+            }
+        </div>
+    </div>
+</div>

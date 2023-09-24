@@ -14,12 +14,31 @@ a {
   color: #191919;
 }
 
+.landing-title {
+  font-size: 96px !important;
+}
+
+.section-title {
+  color: #F94D1C;
+  font-size: 18px;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+}
+
 .bg-theme {
   background-color: #f0efe9;
 }
 
 .bg-theme-dark {
   background-color: #0e1021;
+}
+
+.bg-theme-grey {
+  background-color: #f0efe9;
+}
+
+.bg-theme-yellow {
+  background-color: #F0D082;
 }
 
 .font-dans {
@@ -58,6 +77,31 @@ a {
   border: 0;
 }
 
+.btn-theme-sec {
+  color: #191919;
+  background-color: transparent;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  padding: 1rem;
+  border-radius: 50px;
+  border: 1px solid #191919;
+}
+
+.btn-theme-black {
+  color: white;
+  background-color: #191919;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  padding: 1rem;
+  border-radius: 50px;
+  border: none !important;
+  outline: none;
+}
+
 .input-base {
   padding: 1rem;
   border-radius: 50px;
@@ -78,7 +122,7 @@ a {
 .link-nav-active {
   position: relative;
   display: inline-block;
-  font-weight: 700 !important; /* Set your desired font-weight */
+  font-weight: 700 !important;
   text-decoration: none;
 }
 
@@ -126,6 +170,9 @@ a {
   margin-left: 1rem;
 }
 
+.body-footer {
+  overflow: hidden !important;
+}
 .body-footer .header-link-footer {
   display: block;
   font-family: "DM Sans", sans-serif;
@@ -160,4 +207,50 @@ a {
   bottom: -81px;
   right: -106px;
   transform: rotate(4deg);
+}
+
+.feature-item-grid .umb-block-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.service-item .umb-block-list {
+  display: flex;
+  gap: 2rem;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.review-item-container .umb-block-list {
+  display: flex;
+  gap: 4rem;
+  flex-direction: row !important;
+  justify-content: space-between;
+}
+
+.about-company-image-desc {
+  background-color: #BEEBFF;
+  padding: 2rem;
+  position: absolute;
+  bottom: 50px;
+  left: -50px;
+}
+
+.why-us-bg {
+  height: 425px;
+  width: 1060px;
+  position: absolute;
+  right: 0;
+  bottom: -77px;
+}
+
+.review-item-person-img {
+  width: 70px;
+  height: auto;
+  border-radius: 50%;
+}
+
+.reviewstar {
+  color: #F94D1C;
 }
