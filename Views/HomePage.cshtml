@@ -71,6 +71,27 @@
 
 
 <div class="container-fluid bg-theme-yellow p-4">
+    
+    
+    
+    <div class="container">
+        <div class="d-flex justify-content-between align-center">
+            <div>
+                <p class="section-title">@Model.Value("ourTeamSectionTitle")</p>
+                <h3 class="my-4 fs-1 weight-bold">@Model.Value("ourTeamTitle")</h3>
+            </div>
+            <div>
+                <button href="@Model.Value("ourTeamButtonUrl")" class="btn-theme border border-1 border-dark">@Model.Value("ourTeamButtonTitle")</button>
+            </div>
+        </div>
+
+        <div class="review-item-container">
+            @Html.GetBlockListHtml(Model.Team)
+        </div>
+    </div>
+    
+    
+    
     <div class="container p-5 bg-white">
         <p class="section-title text-center">@Model.Value("reviewsSectionTitle")</p>
         <h3 class="my-4 fs-1 weight-bold text-center">@Model.Value("reviewsTitle")</h3>
