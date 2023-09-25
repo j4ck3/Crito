@@ -142,7 +142,6 @@ a {
   height: 50px;
 }
 .body-nav .contact-nav {
-  color: #191919;
   font-size: 15px;
   font-family: "Inter", sans-serif;
   font-weight: 400;
@@ -157,12 +156,10 @@ a {
   border: none;
 }
 .body-nav .socials-nav {
-  color: #191919;
   font-size: 15px;
   margin-right: 0.4rem;
 }
 .body-nav .link-nav {
-  color: #191919;
   font-size: 15px;
   font-family: "Inter", sans-serif;
   font-weight: 400;
@@ -258,4 +255,22 @@ a {
 
 .reviewstar {
   color: #F94D1C;
+}
+
+.pagination-btn {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: 1px solid #191919;
+  margin-right: 5px;
+}
+.pagination-btn:hover {
+  background-color: #0e1021;
+  color: white;
+}
+
+.pagination-btn-active {
+  background-color: #0e1021;
+  color: white;
 }

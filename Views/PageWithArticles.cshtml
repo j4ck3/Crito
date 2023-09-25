@@ -3,10 +3,20 @@
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @using Umbraco.Cms.Core.Models.PublishedContent;
 @{
-	Layout = "_Layout.cshtml";
-	var selection = Umbraco.Content(Guid.Parse("396b1442-593b-48bf-82e7-72acb785dec3"))
+    Layout = "_Layout.cshtml";
+    var selection = Umbraco.Content(Guid.Parse("396b1442-593b-48bf-82e7-72acb785dec3"))
     .ChildrenOfType("articleDoc")
     .Where(x => x.IsVisible());
+    
+    //pagination
+    var itemsPerPage = 1;
+    var pageNumber = 1;
+
+    if (!int.TryParse(Context.Request.Query["page"], out pageNumber))
+        pageNumber = 1;
+
+    var selectionCount = selection?.Count() ?? 0;
+    var pagedItems = selection?.Skip((pageNumber - 1) * itemsPerPage).Take(itemsPerPage);
 }
 
 
@@ -16,8 +26,8 @@
 <div class="container">
     @if (selection != null)
     {
-        <div class="row">
-            @foreach (var item in selection)
+        <main class="row">
+            @foreach (var item in pagedItems!)
             {
                 var img = item.Value<IPublishedContent>("articleImage");
 
@@ -35,12 +45,44 @@
                     </a>
                 </div>
             }
-        </div>
+        </main>
 
     }
     else
     {
         <h1 class="text-center">No Articles yet.</h1>
+    }
+    
+    
+    
+    @if(selectionCount == itemsPerPage)
+    {
+        <nav class="d-flex justify-content-center">
+            @if(pageNumber > 1)
+            {
+                <a class="pagination-btn me-3" href="?page=@(pageNumber - 1)" aria-label="previus" aria-hidden="true" title="previus page">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </a>  
+            }
+    
+            @for (int i = 1; i <= Math.Ceiling((decimal)selectionCount / itemsPerPage); i++ )
+            {
+                if(i == pageNumber)
+                {
+                    <a class="pagination-btn pagination-btn-active" href="?page=@i" aria-label="page @i" aria-hidden="true" title="active page">@i</a>
+                }else
+                {
+                    <a class="pagination-btn" href="?page=@i" title="page @i">@i</a>
+                }
+            }
+    
+            @if(pageNumber < Math.Ceiling((decimal)selectionCount / itemsPerPage))
+            {
+                <a class="pagination-btn ms-2" href="?page=@(pageNumber + 1)" aria-label="next" aria-hidden="true" title="next page">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </a>
+            }
+        </nav>
     }
 </div>
 
