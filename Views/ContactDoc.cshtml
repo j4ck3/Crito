@@ -1,0 +1,46 @@
+﻿@using Crito.Models
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ContactDoc>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    Layout = "_Layout.cshtml";
+    ViewData["Title"] = @Model.Value("pageTitle");
+    ViewData["Description"] = @Model.Value("pageDescription");
+    ViewData["Keys"] = @Model.Value("pageKeys");
+
+    var contactModel = new ContactModel();
+}
+
+@await Html.PartialAsync("_Nav")
+@await Html.PartialAsync("_breadcrumb")
+
+
+<div class="contactinfo-items my-5">
+    @Html.GetBlockListHtml(Model.ContactInfo)
+</div>
+
+<div class="container-lg bg-theme d-flex flex-column my-5">
+    <div class="mx-5">
+        <p class="font-dans size-xl weight-bold mt-5 text-center">Leave us a message for any information.</p>
+        @using (Html.BeginUmbracoForm("Index", "Contact", FormMethod.Post))
+        {
+            <div asp-validation-summary="All"></div>
+            <input asp-for="@contactModel.Name" class="input-base my-2 w-100" type="text" placeholder="Name*" />
+            <input asp-for="@contactModel.Email" class="input-base my-2 w-100" type="text" placeholder="Email*" />
+            <textarea asp-for="@contactModel.Message" class="input-base my-2 w-100" rows="4" type="text" placeholder="Message*"></textarea>
+            <button class="btn-theme w-100 my-5" type="submit">Send Message<i class="fa-solid fa-up-right-from-square ms-3"></i></button>
+        }
+    </div>
+</div>
+
+
+<iframe class="w-100" src="@Model.Value("mapUrl")" 
+    height="450" 
+    style="border:0;" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+
+
+@await Html.PartialAsync("_Footer")

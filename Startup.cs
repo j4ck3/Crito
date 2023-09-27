@@ -1,9 +1,18 @@
+using Crito.Contexts;
+using Crito.Services;
+using Microsoft.EntityFrameworkCore;
+
 namespace Crito
 {
     public class Startup
     {
         private readonly IWebHostEnvironment _env;
         private readonly IConfiguration _config;
+
+        IConfiguration configuration = new ConfigurationBuilder()
+        .SetBasePath(Directory.GetCurrentDirectory())
+        .AddJsonFile("configs.json")
+        .Build();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Startup" /> class.
@@ -27,14 +36,24 @@ namespace Crito
         /// This method gets called by the runtime. Use this method to add services to the container.
         /// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940.
         /// </remarks>
+        /// 
+
         public void ConfigureServices(IServiceCollection services)
         {
+            var ConnData = configuration.GetConnectionString("mySqlData");
+            services.AddDbContext<DataContext>(o =>
+                o.UseMySql(ConnData, ServerVersion.AutoDetect(ConnData)));
+
+
+            services.AddScoped<ContactService>();
+
             services.AddUmbraco(_env, _config)
                 .AddBackOffice()
                 .AddWebsite()
                 .AddDeliveryApi()
                 .AddComposers()
                 .Build();
+
         }
 
         /// <summary>

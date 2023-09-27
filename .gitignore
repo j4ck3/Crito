@@ -10,6 +10,9 @@
 *.userosscache
 *.sln.docstates
 
+
+configs.json
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -468,9 +471,9 @@ appsettings-schema.*.json
 /umbraco/Data/TEMP/
 
 # SQLite database files
-/umbraco/Data/*.sqlite.db
-/umbraco/Data/*.sqlite.db-shm
-/umbraco/Data/*.sqlite.db-wal
+#/umbraco/Data/*.sqlite.db
+#/umbraco/Data/*.sqlite.db-shm
+#/umbraco/Data/*.sqlite.db-wal
 
 # Log files
 /umbraco/Logs/

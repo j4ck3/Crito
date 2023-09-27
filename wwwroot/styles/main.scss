@@ -126,6 +126,16 @@
     }
 }
 
+.contactinfo-items {
+    .umb-block-list {
+        margin: 2rem 0;
+        display: flex;
+        gap: 4rem;
+        flex-direction: row !important;
+        justify-content: center;
+    }
+}
+
 .about-company-image-desc {
     background-color: #BEEBFF;
     padding: 2rem;
@@ -173,4 +183,17 @@
 .pagination-btn-active {
     background-color: $color-theme-dark;
     color: white;
+}
+
+
+.info-card-icon {
+    background-color: $color-theme-dark;
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 1rem 0 0;
 }

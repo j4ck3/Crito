@@ -1,0 +1,19 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>;
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+    var content = (ContentModels.InfoCards)Model.Content;
+}
+
+<div class="d-flex py-4 px-5 border border-1">
+    @if(content.Value("infoCardIcon") != null)
+    {
+        <div class="info-card-icon">
+            <i class="@content.Value("infoCardIcon") text-white"></i>
+        </div>
+    }
+
+    <div>
+        <h3 class="mb-3 font-dans weight-bold">@content.Value("infoCardTitle")</h3>
+        <p class="font-inter weight-regular m-0">@content.Value("infoCardBody")</p>
+    </div>
+</div>
