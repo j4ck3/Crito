@@ -46,6 +46,7 @@ namespace Crito
 
 
             services.AddScoped<ContactService>();
+            services.AddScoped<NewsSignupService>();
 
             services.AddUmbraco(_env, _config)
                 .AddBackOffice()

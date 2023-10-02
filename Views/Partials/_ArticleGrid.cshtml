@@ -1,0 +1,43 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    var selection = Umbraco.Content(Guid.Parse("396b1442-593b-48bf-82e7-72acb785dec3"))
+        .ChildrenOfType("articleDoc")
+        .Where(x => x.IsVisible() && x.Value<string>("articleCategory") == "Projects")
+        .Take(4);
+}
+
+
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models.PublishedContent;
+
+
+
+<div class="container my-5 py-5">
+    <p class="section-title text-center">@Model.Value("articleGridSectionTitle")</p>
+    <h2 class="weight-bold text-center my-3">@Model.Value("articleGridTitle")</h2>
+    
+    @if (selection != null && selection.Any())
+    {
+        <section class="row row-cols-1 row-cols-md-2 gy-md-4 gy-1">
+            @foreach (var item in selection)
+            {
+                var img = item.Value<IPublishedContent>("articleImage");
+
+                <div class="col col-md-6">
+                    <a href="@item.Url()">
+                        <div>
+                            <img class="w-auto" src="@img?.Url()" alt="@item.Name()" />
+                        </div>
+                        <h4 class="weight-bold fs-4 w-100 border-bottom p-3">@item.Name()</h4>
+                        <div class="d-flex justify-content-end"> <!-- Use justify-content-end to move the button to the right -->
+                            <a href="@item.Url()" class="project-btn">Read More<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></a>
+                        </div>
+                    </a>
+                </div>
+            }
+        </section>
+
+    }
+    <button href="@Model.Value("articleGridButtonUrl")" class="btn-theme-black mx-auto d-block mt-4">@Model.Value("articleGridButtonTitle")<i class="fa-solid fa-arrow-up-right-from-square ms-2"></i></button>
+</div>
+    

@@ -1,0 +1,28 @@
+﻿@using Crito.Models.Entities;
+@using Crito.Models;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+@{
+    NewsLetterSignupModel signupModel = new NewsLetterSignupModel();
+}
+<div class="container-fluid bg-theme position-relative">
+
+    @if (!TempData.ContainsKey("SignupSuccess"))
+    {
+        @using (Html.BeginUmbracoForm("Index", "Home", FormMethod.Post))
+        {
+            <div class="d-flex justify-content-center py-5 align-items-center">
+                <p class="weight-bold size-xl">Get News Updates By Signup</p>
+                <div asp-validation-summary="All"></div>
+                <input asp-for="@signupModel.Email" class="input-base me-3" type="text" placeholder="Email*" />
+                <button class="btn-theme" type="submit">Subscribe<i class="fa-solid fa-up-right-from-square ms-3"></i></button>
+            </div>
+        }
+    }
+
+    @if (TempData.ContainsKey("SignupSuccess"))
+    {
+        <h2 class="weight-bold fs-2 text-center">@TempData["SignupSuccess"]</h2>
+    }
+    <img class="newsletter-img" src="~/Imgs/Vectors/vecor-mail.png" alt="Stylish lines">
+</div>

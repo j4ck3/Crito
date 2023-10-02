@@ -27,7 +27,6 @@ public class ContactController : SurfaceController
             return CurrentUmbracoPage();
         
         await _contactService.CreateAsync(contactModel);
-
         return LocalRedirect("/");
     }
 }

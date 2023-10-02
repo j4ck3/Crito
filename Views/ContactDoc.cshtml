@@ -19,7 +19,7 @@
     @Html.GetBlockListHtml(Model.ContactInfo)
 </div>
 
-<div class="container-lg bg-theme d-flex flex-column my-5">
+<div class="container bg-theme d-flex flex-column my-5">
     <div class="mx-5">
         <p class="font-dans size-xl weight-bold mt-5 text-center">Leave us a message for any information.</p>
         @using (Html.BeginUmbracoForm("Index", "Contact", FormMethod.Post))
@@ -34,7 +34,9 @@
 </div>
 
 
-<iframe class="w-100" src="@Model.Value("mapUrl")" 
+<iframe 
+    class="w-100" 
+    src="@Model.Value("mapUrl")" 
     height="450" 
     style="border:0;" 
     allowfullscreen="" 

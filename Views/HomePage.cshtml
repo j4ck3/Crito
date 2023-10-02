@@ -1,5 +1,7 @@
-﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+﻿@using Crito.Models;
+@using Umbraco.Cms.Web.Common.PublishedModels;
 @using Umbraco.Cms.Core.Models;
+@using Crito.Models.Entities
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.HomePage>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
@@ -7,6 +9,7 @@
 	ViewData["Title"] = @Model.Value("pageTitle");
 	ViewData["Description"] = @Model.Value("pageDescription");
 	ViewData["Keys"] = @Model.Value("pageKeys");
+    NewsLetterSignupModel signUpModel = new NewsLetterSignupModel();
 }
 
 @await Html.PartialAsync("_Nav")
@@ -18,9 +21,9 @@
     <div class="p-5">
         <div class="row">
             <div class="col-4">
-                    <p class="section-title">@Model.Value("featuresSectionTitle")</p>
-                    <h3 class="my-4 fs-1 weight-bold">@Model.Value("featuresTitle")</h3>
-                    <button class="btn-theme w-100 d-block" href="@Model.Value("featuresButtonUrl")">@Model.Value("featuresButtonTitle")</button>
+                <p class="section-title">@Model.Value("featuresSectionTitle")</p>
+                <h3 class="my-4 fs-1 weight-bold">@Model.Value("featuresTitle")</h3>
+                <button class="btn-theme w-100 d-block" href="@Model.Value("featuresButtonUrl")">@Model.Value("featuresButtonTitle")</button>
             </div>
             <div class="col-8">
                 <div class="feature-item-grid">
@@ -69,11 +72,9 @@
     </div>
 </div>
 
+@await Html.PartialAsync("_ArticleGrid")
 
 <div class="container-fluid bg-theme-yellow p-4">
-    
-    
-    
     <div class="container">
         <div class="d-flex justify-content-between align-center">
             <div>
@@ -91,7 +92,6 @@
     </div>
     
     
-    
     <div class="container p-5 bg-white">
         <p class="section-title text-center">@Model.Value("reviewsSectionTitle")</p>
         <h3 class="my-4 fs-1 weight-bold text-center">@Model.Value("reviewsTitle")</h3>
@@ -103,6 +103,26 @@
 </div>
 
 
+<div class="container-fluid bg-theme">
 
+    @if (!TempData.ContainsKey("SignupSuccess"))
+    {
+        @using (Html.BeginUmbracoForm("Index", "Home", FormMethod.Post))
+        {
+            <div class="d-flex justify-content-center py-5 align-items-center">
+                <p class="weight-bold size-xl">Get News Updates By Signup</p>
+                <div asp-validation-summary="All"></div>
+                <input asp-for="@signUpModel.Email" class="input-base me-3" type="text" placeholder="Email*" />
+                <button class="btn-theme" type="submit">Subscribe<i class="fa-solid fa-up-right-from-square ms-3"></i></button>
+            </div>
+        }
+    }
+
+    @if (TempData.ContainsKey("SignupSuccess"))
+    {
+        <h2 class="weight-bold fs-2 text-center">@TempData["SignupSuccess"]</h2>
+    }
+</div>
+@await Html.PartialAsync("_ArticleSlider")
 @await Html.PartialAsync("_Footer")
     
