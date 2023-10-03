@@ -8,13 +8,13 @@ public class ContactModel
     public string? Id { get; set; }
 
 	[EmailAddress]
-    [Required(ErrorMessage = "*")]
+    [Required]
     public string Email { get; set; } = null!;
 
-    [Required(ErrorMessage = "*")]
+    [Required]
     public string Name { get; set; } = null!;
 
-    [Required(ErrorMessage = "*")]
+    [Required]
     public string Message { get; set; } = null!;
     public DateTime SentDate { get; set; }
 

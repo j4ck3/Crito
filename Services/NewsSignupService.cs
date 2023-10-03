@@ -12,16 +12,16 @@ public class NewsSignupService
         _dataContext = dataContext;
     }
 
-    public async Task<NewsLetterSignupEntity> CreateAsync(NewsLetterSignupModel model)
+    public async Task<bool> CreateAsync(NewsLetterSignupModel model)
     {
         try
         {
             NewsLetterSignupEntity entity = model;
             _dataContext.Add(entity);
             await _dataContext.SaveChangesAsync();
-            return entity;
+            return true;
         }
-        catch { return null!; }
+        catch { return false; }
     }
 
 }

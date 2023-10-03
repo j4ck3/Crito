@@ -1,5 +1,6 @@
 ﻿@using Crito.Models
 @using Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ContactDoc>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
@@ -13,7 +14,6 @@
 
 @await Html.PartialAsync("_Nav")
 @await Html.PartialAsync("_breadcrumb")
-
 
 <div class="contactinfo-items my-5">
     @Html.GetBlockListHtml(Model.ContactInfo)
@@ -32,7 +32,6 @@
         }
     </div>
 </div>
-
 
 <iframe 
     class="w-100" 

@@ -1,5 +1,4 @@
 ﻿using Crito.Models;
-using Crito.Models.Entities;
 using Crito.Services;
 using Microsoft.AspNetCore.Mvc;
 using Umbraco.Cms.Core.Cache;
@@ -20,16 +19,14 @@ public class HomeController : SurfaceController
     }
 
     [HttpPost]
-    public async Task<IActionResult> Index(NewsLetterSignupModel model)
+    public async Task<IActionResult> Index(NewsLetterSignupModel signupModel)
     {
         if (!ModelState.IsValid)
             return CurrentUmbracoPage();
 
-        await _newsSignupService.CreateAsync(model);
-        return LocalRedirect("/");
+        if(await _newsSignupService.CreateAsync(signupModel))
+            TempData["SignupSuccess"] = "You are now signed up on our newsletter!";
 
-
-        //TempData["SignupSuccess"] = "You are now signed up on our newsletter!";
-        //return LocalRedirect("news");
+        return CurrentUmbracoPage();
     }
 }

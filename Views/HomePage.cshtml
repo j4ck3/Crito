@@ -1,15 +1,15 @@
-﻿@using Crito.Models;
+﻿@using Crito.Controllers;
+@using Crito.Models;
 @using Umbraco.Cms.Web.Common.PublishedModels;
 @using Umbraco.Cms.Core.Models;
-@using Crito.Models.Entities
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.HomePage>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
-	Layout = "_Layout.cshtml";
-	ViewData["Title"] = @Model.Value("pageTitle");
-	ViewData["Description"] = @Model.Value("pageDescription");
-	ViewData["Keys"] = @Model.Value("pageKeys");
-    NewsLetterSignupModel signUpModel = new NewsLetterSignupModel();
+    Layout = "_Layout.cshtml";
+    ViewData["Title"] = @Model.Value("pageTitle");
+    ViewData["Description"] = @Model.Value("pageDescription");
+    ViewData["Keys"] = @Model.Value("pageKeys");
+    var signUpModel = new NewsLetterSignupModel();
 }
 
 @await Html.PartialAsync("_Nav")
@@ -40,7 +40,7 @@
 <div class="container-fluid bg-theme-grey">
     <div class="container py-5">
         <p class="section-title">@Model.Value("servicesSectionTitle")</p>
-        <h class="fs-1 weight-bold">@Model.Value("servicesTitle")</h3>
+        <h3 class="fs-1 weight-bold">@Model.Value("servicesTitle")</h3>
         <div class="service-item">
             @Html.GetBlockListHtml(Model.Services)
         </div>
@@ -103,26 +103,8 @@
 </div>
 
 
-<div class="container-fluid bg-theme">
+@await Html.PartialAsync("_NewsSignup")
 
-    @if (!TempData.ContainsKey("SignupSuccess"))
-    {
-        @using (Html.BeginUmbracoForm("Index", "Home", FormMethod.Post))
-        {
-            <div class="d-flex justify-content-center py-5 align-items-center">
-                <p class="weight-bold size-xl">Get News Updates By Signup</p>
-                <div asp-validation-summary="All"></div>
-                <input asp-for="@signUpModel.Email" class="input-base me-3" type="text" placeholder="Email*" />
-                <button class="btn-theme" type="submit">Subscribe<i class="fa-solid fa-up-right-from-square ms-3"></i></button>
-            </div>
-        }
-    }
-
-    @if (TempData.ContainsKey("SignupSuccess"))
-    {
-        <h2 class="weight-bold fs-2 text-center">@TempData["SignupSuccess"]</h2>
-    }
-</div>
 @await Html.PartialAsync("_ArticleSlider")
 @await Html.PartialAsync("_Footer")
     

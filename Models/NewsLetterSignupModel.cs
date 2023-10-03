@@ -5,9 +5,9 @@ namespace Crito.Models;
 
 public class NewsLetterSignupModel
 {
-    [Required(ErrorMessage = "Ange en mail adress")]
-    public string Email { get; set; }
-
+    [EmailAddress]
+    [Required]
+    public string Email { get; set; } = null!;
 
     public static implicit operator NewsLetterSignupEntity(NewsLetterSignupModel model)
     {
