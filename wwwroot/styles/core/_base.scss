@@ -10,6 +10,10 @@ html, body {
 a {
     text-decoration: none;
     color: $color-text;
+
+    &:hover {
+        color: #757575;
+    }
 }
 
 .landing-title {

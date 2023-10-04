@@ -34,7 +34,7 @@
         text-decoration: none;
         margin-left: 1rem;
         padding-right: 1rem;
-        border-right: 1px solid $color-text;
+        border-right: 2px solid #DAD9D3;
         padding-top: .3rem;
         padding-bottom: .3rem;
 
@@ -156,6 +156,15 @@
     bottom: -77px;
 }
 
+.project-btn {
+    padding: 1rem;
+
+    &:hover {
+        background-color: $color-gray-0!important;
+        border-radius: 50px;
+    }
+}
+
 .review-item-person-img {
     width: 70px;
     height: auto;
@@ -216,6 +225,25 @@
     font-size: 10px !important;
 }
 
+.page-dots {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.page-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #999;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.page-dot.active {
+    background-color: #333;
+}
+
 .article-search-input {
     background-color: transparent;
     font-family: $font-Inter;
@@ -224,18 +252,31 @@
     border: none;
 }
 
+.slider {
+    display: flex;
+    position: relative;
+}
+
 .landing-img {
     position: absolute;
     bottom: 0;
     left: 0;
-    pointer-events: none!important;
-    user-select: none!important;
+    pointer-events: none !important;
+    user-select: none !important;
 }
 
 .newsletter-img {
     position: absolute;
     bottom: -28px;
     right: -45px;
+    pointer-events: none !important;
+    user-select: none !important;
+}
+
+.services-img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
     pointer-events: none !important;
     user-select: none !important;
 }

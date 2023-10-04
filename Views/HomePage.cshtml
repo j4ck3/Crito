@@ -37,7 +37,7 @@
 @await Html.PartialAsync("_AboutCompany")
 
 
-<div class="container-fluid bg-theme-grey">
+<div class="container-fluid bg-theme-grey position-relative">
     <div class="container py-5">
         <p class="section-title">@Model.Value("servicesSectionTitle")</p>
         <h3 class="fs-1 weight-bold">@Model.Value("servicesTitle")</h3>
@@ -46,6 +46,7 @@
         </div>
         <button class="d-block mt-4 mx-auto btn-theme-sec" href="@Model.Value("serviceButtonUrl")">@Model.Value("serviceButtonTitle")<i class="fa-solid fa-up-right-from-square ms-3"></i></button>
     </div>
+    <img class="services-img" src="~/Imgs/Vectors/vector-services.svg" alt="Stylish lines">
 </div>
 
 <div class="container-fluid position-relative">

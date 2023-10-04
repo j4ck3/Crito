@@ -8,7 +8,13 @@
 	Layout = "_Layout.cshtml";
 	var img = Model.Value<IPublishedContent>("articleImage");
 	ViewData["Title"] = @Model.Name();
+
+	var selection = Umbraco.Content(Guid.Parse("396b1442-593b-48bf-82e7-72acb785dec3"))?
+    .ChildrenOfType("articleDoc")?
+    .Where(x => x.IsVisible())
+    .Take(4);
 }
+
 
 @await Html.PartialAsync("_Nav")
 @await Html.PartialAsync("_breadcrumb")
@@ -46,16 +52,23 @@
 			</div>
 
 			<div class="p-3 border border-1 border-grey mb-3">
-				<h3 class="weight-bold fs-3">Recent Posts</h3>
-				<div class="border-bottom m-3">
-					<p class="weight-bold"></p>
-					<p class="text-opacity-75 font-inter fs-6"></p>
-				</div>
+				<h3 class="weight-bold fs-3 my-2">Recent Posts</h3>
+				@if (selection != null)
+				{
+					@foreach (var item in selection)
+					{
+						<div class="border-bottom m-3">
+							<a href="@item.Url()" class="weight-bold">@item.Name()</a>
+							<p class="text-opacity-75 font-inter fs-6">@item.CreateDate.ToString("MMM dd, yyyy")</p>
+						</div>
+					}
+				}
+
 			</div>
 
 			<div class="p-3 border border-1 border-grey">
 				<h3 class="weight-bold fs-3">Categories</h3>
-				<p><span class="fs-6 weight-bold"> - </span><span class="text-opacity-75"> Posts</span></p>
+				<p><span class="fs-6 weight-bold">School - </span><span class="text-opacity-75">11 Posts</span></p>
 			</div>
 		</div>
 	</div>
@@ -63,7 +76,7 @@
 
 
 <div class="container-fluid bg-theme-grey">
-    @await Html.PartialAsync("_ArticleSlider")
+	@await Html.PartialAsync("_ArticleSlider")
 </div>
 
 

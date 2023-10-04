@@ -8,10 +8,16 @@
     ViewData["Description"] = @Model.Value("pageDescription");
     ViewData["Keys"] = @Model.Value("pageKeys");
 
-    var selection = Umbraco.Content(Guid.Parse("396b1442-593b-48bf-82e7-72acb785dec3"))
-    .ChildrenOfType("articleDoc")
+    var category = Context.Request.Query["category"].ToString();
+    var selection = Umbraco.Content(Guid.Parse("396b1442-593b-48bf-82e7-72acb785dec3"))?
+    .ChildrenOfType("articleDoc")?
     .Where(x => x.IsVisible());
-    
+
+    if (!string.IsNullOrEmpty(category))
+    {
+        selection = selection?.Where(x => x.Value<string>("articleCategory") == category);
+    }
+
     //pagination
     var itemsPerPage = 6;
     var pageNumber = 1;
@@ -23,42 +29,40 @@
     var pagedItems = selection?.Skip((pageNumber - 1) * itemsPerPage).Take(itemsPerPage);
 }
 
-
 @await Html.PartialAsync("_Nav")
 @await Html.PartialAsync("_breadcrumb")
 
 <div class="container my-5">
     @if (pagedItems != null)
     {
-        <main class="row">
+        <div class="row row-cols-1 row-cols-md-2 gy-md-4 gy-1">
             @foreach (var item in pagedItems)
             {
                 var img = item.Value<IPublishedContent>("articleImage");
-
-                <div class="col article-body">
-                    <a href="@item.Url()">
-                        <div class="position-relative">
-                            <img class="article-img" src="@img?.Url()" alt="@item.Name()" />
-                            <div class="position-absolute top-0 start-0 p-2 m-2 z-4 bg-theme-yellow ">
-                                <p class="text-center m-0 weight-bold">@item.CreateDate.ToString("dd")</p>
-                                <p class="text-center m-0">@item.CreateDate.ToString("MMM")</p>
+                <div class="col col-md-4">
+                    <div class="article-body mx-auto">
+                        <a href="@item.Url()">
+                            <div class="position-relative">
+                                <img class="article-img" src="@img?.Url()" alt="@item.Name()" />
+                                <div class="position-absolute top-0 start-0 p-2 m-2 z-4 bg-theme-yellow ">
+                                    <p class="text-center m-0 weight-bold">@item.CreateDate.ToString("dd")</p>
+                                    <p class="text-center m-0">@item.CreateDate.ToString("MMM")</p>
+                                </div>
                             </div>
-                        </div>
-                        <p class="font-inter text-opacity-75 my-4">@item.Value("articleCategory")</p>
-                        <h4 class="weight-bold fs-4">@item.Name()</h4>
-                        <p class="font-inter text-opacity-75">@item.Value("articleIntro")</p>
-                    </a>
+                            <p class="font-inter text-opacity-75 my-4">@item.Value("articleCategory")</p>
+                            <h4 class="weight-bold fs-4">@item.Name()</h4>
+                            <p class="font-inter text-opacity-75">@item.Value("articleIntro")</p>
+                        </a>
+                    </div>
                 </div>
             }
-        </main>
+        </div>
 
     }
     else
     {
-        <h1 class="text-center">No Articles yet.</h1>
+        <h1 class="text-center">No articles yet.</h1>
     }
-    
-    
     
 
     <nav class="d-flex justify-content-center my-4">

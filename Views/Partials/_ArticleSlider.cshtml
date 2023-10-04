@@ -11,40 +11,47 @@
 <div class="container py-4">
     <div class="d-flex justify-content-between my-3">
         <div>
-            <p class="section-title">@Model.Value("articleSliderSectionTitle")</p>
-            <h2 class="weight-bold size-xl m-0">@Model.Value("articleSliderTitle")</h2>
+            <p class="section-title">Article & News</p>
+            <h2 class="weight-bold size-xl m-0">Get Every Single article & News</h2>
+            </div>
+            <div class="align-self-end">
+            <a href="/News" class="btn-theme-sec">Browse articles<i class="fa-solid fa-arrow-up-right-from-square ms-3"></i></a>
+        </div>
+        @* <div>
+            <p class="section-title">@Model.Value("articleliderSectionTitle")</p>
+            <h2 class="weight-bold size-xl m-0">@Model.Value("articleliderTitle")</h2>
         </div>
         <div class="align-self-end">
-            <button url="@Model.Value("articleSliderButtonUrl")" class="btn-theme-sec" href="@Model.Value("articleSliderButtonUrl")">@Model.Value("articleSliderButtonTitle")<i class="fa-solid fa-arrow-up-right-from-square ms-3"></i></button>
-        </div>
+            <button url="@Model.Value("articleliderButtonUrl")" class="btn-theme-sec" href="@Model.Value("articleliderButtonUrl")">@Model.Value("articleliderButtonTitle")<i class="fa-solid fa-arrow-up-right-from-square ms-3"></i></button>
+        </div> *@
     </div>
     
-    @if (selection != null)
-    {
-        <main class="row">
-            @foreach (var item in selection)
-            {
-                var img = item.Value<IPublishedContent>("articleImage");
 
-                <div class="col article-body">
-                    <a href="@item.Url()">
-                        <div class="position-relative">
-                            <img class="article-img" src="@img?.Url()" alt="@item.Name()" />
-                            <div class="position-absolute top-0 start-0 p-2 m-2 z-4 bg-theme-yellow ">
-                                <p class="text-center m-0 weight-bold">@item.CreateDate.ToString("dd")</p>
-                                <p class="text-center m-0">@item.CreateDate.ToString("MMM")</p>
+    <div class="container position-relative">
+        @if (selection != null)
+        {
+            <main class="slider">
+                @foreach (var item in selection)
+                {
+                    var img = item.Value<IPublishedContent>("articleImage");
+                    <div class="article-body">
+                        <a href="@item.Url()">
+                            <div class="position-relative">
+                                <img class="article-img" src="@img?.Url()" alt="@item.Name()" />
+                                <div class="position-absolute top-0 start-0 p-2 m-2 z-4 bg-theme-yellow ">
+                                    <p class="text-center m-0 weight-bold">@item.CreateDate.ToString("dd")</p>
+                                    <p class="text-center m-0">@item.CreateDate.ToString("MMM")</p>
+                                </div>
                             </div>
-                        </div>
-                        <p class="font-inter text-opacity-75 my-4">@item.Value("articleCategory")</p>
-                        <h4 class="weight-bold fs-4">@item.Name()</h4>
-                        <p class="font-inter text-opacity-75">@item.Value("articleIntro")</p>
-                    </a>
-                </div>
-            }
-        </main>
-
-    }
-
-    
-    
+                            <p class="font-inter text-opacity-75 my-4">@item.Value("articleCategory")</p>
+                            <h4 class="weight-bold fs-4">@item.Name()</h4>
+                            <p class="font-inter text-opacity-75">@item.Value("articleIntro")</p>
+                        </a>
+                    </div>
+                }
+            </main>
+        }
+        <div class="page-dots mt-5"></div>
+    </div>
+    <script src="~/js/ArticleSlider.js"></script>
 </div>
