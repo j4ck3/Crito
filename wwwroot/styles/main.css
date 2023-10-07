@@ -333,7 +333,8 @@ a:hover {
   max-width: 420px;
 }
 .article-body .article-img {
-  width: 100%;
+  max-width: 420px;
+  height: auto;
 }
 
 .article-devider {
@@ -370,6 +371,7 @@ a:hover {
 
 .slider {
   display: flex;
+  gap: 1rem;
   position: relative;
 }
 
